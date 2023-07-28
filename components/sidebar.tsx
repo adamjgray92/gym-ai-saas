@@ -12,6 +12,7 @@ import {
 import { Montserrat } from 'next/font/google';
 
 import { cn } from '@/lib/utils';
+import FreeCounter from '@/components/free-counter';
 
 const montserrat = Montserrat({ weight: '600', subsets: ['latin'] });
 
@@ -41,7 +42,11 @@ const routes = [
   },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  apiLimitCount: number;
+}
+
+export default function Sidebar({ apiLimitCount = 0 }: SidebarProps) {
   const pathname = usePathname();
 
   return (
@@ -75,6 +80,7 @@ export default function Sidebar() {
           ))}
         </div>
       </div>
+      <FreeCounter apiLimitCount={apiLimitCount} />
     </div>
   );
 }
