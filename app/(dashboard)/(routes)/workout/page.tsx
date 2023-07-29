@@ -18,10 +18,13 @@ import Empty from '@/components/empty';
 import Loader from '@/components/loader';
 import { cn } from '@/lib/utils';
 import BotAvatar from '@/components/bot-avatar';
+import { useProModal } from '@/hooks/use-pro-modal';
 
 export default function WorkoutPage() {
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
+
+  const proModal = useProModal();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -49,8 +52,9 @@ export default function WorkoutPage() {
 
       form.reset();
     } catch (error: any) {
-      console.log(error);
-      // TODO: Open Pro Model
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
