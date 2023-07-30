@@ -1,3 +1,5 @@
+import axios from 'axios';
+import { useState } from 'react';
 import { CheckIcon, ZapIcon } from 'lucide-react';
 
 import {
@@ -17,6 +19,20 @@ import { useProModal } from '@/hooks/use-pro-modal';
 
 export default function ProModal() {
   const proModal = useProModal();
+  const [isLoading, setIsLoading] = useState(false);
+
+  const onSubscribe = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get('/api/stripe');
+
+      window.location.href = response.data.url;
+    } catch (error) {
+      console.log('STRIPE_CLIENT_ERROR:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Dialog open={proModal.isOpen} onOpenChange={proModal.onClose}>
@@ -48,7 +64,12 @@ export default function ProModal() {
           </DialogDescription>
         </DialogHeader>
         <DialogFooter>
-          <Button size='lg' variant='premium' className='w-full'>
+          <Button
+            size='lg'
+            variant='premium'
+            className='w-full'
+            onClick={onSubscribe}
+          >
             Upgrade <ZapIcon className='w-4 h-4 ml-2 fill-white' />
           </Button>
         </DialogFooter>
