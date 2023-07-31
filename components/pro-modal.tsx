@@ -65,6 +65,7 @@ export default function ProModal() {
         </DialogHeader>
         <DialogFooter>
           <Button
+            disabled={isLoading}
             size='lg'
             variant='premium'
             className='w-full'
