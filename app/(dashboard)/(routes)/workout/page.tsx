@@ -19,6 +19,7 @@ import Loader from '@/components/loader';
 import { cn } from '@/lib/utils';
 import BotAvatar from '@/components/bot-avatar';
 import { useProModal } from '@/hooks/use-pro-modal';
+import { toast } from 'react-hot-toast';
 
 export default function WorkoutPage() {
   const router = useRouter();
@@ -42,6 +43,8 @@ export default function WorkoutPage() {
         content: values.prompt,
       };
 
+      throw new Error('Test');
+
       const newMessages = [...messages, userMessage];
 
       const response = await axios.post('/api/workout', {
@@ -54,6 +57,8 @@ export default function WorkoutPage() {
     } catch (error: any) {
       if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast.error('Something went wrong');
       }
     } finally {
       router.refresh();
