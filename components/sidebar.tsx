@@ -4,10 +4,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  DumbbellIcon,
+  CodeIcon,
+  ImageIcon,
   LayoutDashboardIcon,
   SettingsIcon,
-  UtensilsCrossedIcon,
 } from 'lucide-react';
 import { Montserrat } from 'next/font/google';
 
@@ -24,15 +24,15 @@ const routes = [
     color: 'text-sky-500',
   },
   {
-    label: 'Daily Workout',
-    icon: DumbbellIcon,
-    href: '/workout',
-    color: 'text-violet-500',
+    label: 'Code Generation',
+    icon: CodeIcon,
+    href: '/code',
+    color: 'text-green-700',
   },
   {
-    label: 'Meal Plan',
-    icon: UtensilsCrossedIcon,
-    href: '/meal-plan',
+    label: 'Image Generation',
+    icon: ImageIcon,
+    href: '/image',
     color: 'text-pink-500',
   },
   {
@@ -84,7 +84,7 @@ export default function Sidebar({
           ))}
         </div>
       </div>
-      <FreeCounter apiLimitCount={apiLimitCount} isPro />
+      <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   );
 }

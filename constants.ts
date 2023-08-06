@@ -1,20 +1,20 @@
-import { DumbbellIcon, UtensilsCrossedIcon } from 'lucide-react';
+import { CodeIcon, ImageIcon } from 'lucide-react';
 
 export const MAX_FREE_COUNTS = 5;
 
 export const TOOLS = [
   {
-    label: 'Daily Workout',
-    icon: DumbbellIcon,
-    color: 'text-violet-500',
-    bgColor: 'bg-violet-500/10',
-    href: '/workout',
+    label: 'Code Generation',
+    icon: CodeIcon,
+    color: 'text-green-700',
+    bgColor: 'bg-green-700/10',
+    href: '/code',
   },
   {
-    label: 'Meal Plan',
-    icon: UtensilsCrossedIcon,
-    color: 'text-pink-500',
-    bgColor: 'bg-pink-500/10',
-    href: '/meal-plan',
+    label: 'Image Generation',
+    icon: ImageIcon,
+    color: 'text-pink-700',
+    bgColor: 'bg-pink-700/10',
+    href: '/image',
   },
 ];

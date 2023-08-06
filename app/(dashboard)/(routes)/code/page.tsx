@@ -3,10 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
-import { DumbbellIcon } from 'lucide-react';
+import { CodeIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
 import * as z from 'zod';
 import { ChatCompletionRequestMessage } from 'openai';
+import ReactMarkdown from 'react-markdown';
 
 import Heading from '@/components/heading';
 import { formSchema } from './constants';
@@ -20,8 +21,10 @@ import { cn } from '@/lib/utils';
 import BotAvatar from '@/components/bot-avatar';
 import { useProModal } from '@/hooks/use-pro-modal';
 import { toast } from 'react-hot-toast';
+import GeneratedCode from '@/components/generated-code';
+import UserAvatar from '@/components/user-avatar';
 
-export default function WorkoutPage() {
+export default function CodePage() {
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -43,11 +46,9 @@ export default function WorkoutPage() {
         content: values.prompt,
       };
 
-      throw new Error('Test');
-
       const newMessages = [...messages, userMessage];
 
-      const response = await axios.post('/api/workout', {
+      const response = await axios.post('/api/code', {
         messages: newMessages,
       });
 
@@ -68,11 +69,11 @@ export default function WorkoutPage() {
   return (
     <div>
       <Heading
-        title='Workout'
-        description='Our'
-        icon={DumbbellIcon}
-        iconColor='text-violet-500'
-        bgColor='bg-violet-500/10'
+        title='Code Generation'
+        description='Generate code using descriptive text.'
+        icon={CodeIcon}
+        iconColor='text-green-700'
+        bgColor='bg-green-700/10'
       />
       <div className='px-4 lg:px-8'>
         <div>
@@ -89,7 +90,7 @@ export default function WorkoutPage() {
                       <Input
                         className='border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent'
                         disabled={isLoading}
-                        placeholder='Push day workout focusing on chest'
+                        placeholder='Simple toggle button using react hooks.'
                         {...field}
                       />
                     </FormControl>
@@ -111,7 +112,7 @@ export default function WorkoutPage() {
               </div>
             )}
             {messages.length === 0 && !isLoading && (
-              <Empty label='No workout started' />
+              <Empty label='No code generator started.' />
             )}
             <div className='flex flex-col-reverse gap-y-4'>
               {messages.map((message) => (
@@ -124,8 +125,27 @@ export default function WorkoutPage() {
                       : 'bg-muted'
                   )}
                 >
-                  {message.role !== 'user' ? <BotAvatar /> : null}
-                  <p className='text-sm'>{message.content}</p>
+                  {message.role !== 'user' ? <BotAvatar /> : <UserAvatar />}
+                  <ReactMarkdown
+                    components={{
+                      pre: ({ node, ...props }) => (
+                        <div className='overflow-auto w-full my-2 bg-black/10 p-2 rounded-lg'>
+                          <GeneratedCode {...props} />
+                        </div>
+                      ),
+                      code: ({ node, ...props }) => (
+                        <>
+                          <code
+                            className='bg-black/10 rounded-lg p-1'
+                            {...props}
+                          />
+                        </>
+                      ),
+                    }}
+                    className='text-sm overflow-hidden leading-7'
+                  >
+                    {message.content || ''}
+                  </ReactMarkdown>
                 </div>
               ))}
             </div>
