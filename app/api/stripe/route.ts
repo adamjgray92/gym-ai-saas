@@ -42,7 +42,7 @@ export async function GET() {
           price_data: {
             currency: 'GBP',
             product_data: {
-              name: 'IntelliGym Pro',
+              name: 'PixelGenius Pro',
               description: 'Unlimited AI Workouts',
             },
             unit_amount: 500,

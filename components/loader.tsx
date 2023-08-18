@@ -6,7 +6,9 @@ export default function Loader() {
       <div className='h-10 w-10 relative animate-spin'>
         <Image alt='logo' fill src='/logo.png' />
       </div>
-      <p className='text-sm text-muted-foreground'>IntelliGym is thinking...</p>
+      <p className='text-sm text-muted-foreground'>
+        PixelGenius is thinking...
+      </p>
     </div>
   );
 }

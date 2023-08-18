@@ -4,28 +4,32 @@ import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 
 const testimonials = [
   {
-    name: 'Adam',
-    avatar: 'A',
-    title: 'Software Engineer',
-    description: "This is the best application I've used!",
+    name: 'Bob',
+    avatar: 'B',
+    title: 'Frontend Engineer',
+    description:
+      'As a frontend developer, pixel-perfect designs matter a lot. This app has become my go-to tool for quickly creating web images that match the design mockups. Highly recommended!',
   },
   {
-    name: 'Adam',
-    avatar: 'A',
-    title: 'Software Engineer',
-    description: "This is the best application I've used!",
+    name: 'Charlie',
+    avatar: 'C',
+    title: 'UI/UX Designer',
+    description:
+      'Designing user interfaces is my passion, and this app aligns perfectly with my workflow. It helps me generate code and content that seamlessly integrates design and functionality.',
   },
   {
-    name: 'Adam',
-    avatar: 'A',
-    title: 'Software Engineer',
-    description: "This is the best application I've used!",
+    name: 'David',
+    avatar: 'D',
+    title: 'Back-end Developer',
+    description:
+      "I'm impressed by how versatile this application is. It covers everything from code generation to creating web images. It's become an indispensable tool in my toolkit.",
   },
   {
-    name: 'Adam',
-    avatar: 'A',
-    title: 'Software Engineer',
-    description: "This is the best application I've used!",
+    name: 'Eva',
+    avatar: 'E',
+    title: 'Product Manager',
+    description:
+      'Managing a web development project involves numerous tasks. This app simplifies the process by providing quick solutions for generating content and code, making my job much smoother.',
   },
 ];
 

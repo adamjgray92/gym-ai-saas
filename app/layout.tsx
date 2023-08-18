@@ -9,7 +9,7 @@ import ToasterProvider from '@/components/toast-provider';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'IntelliGym',
+  title: 'PixelGenius',
   description: 'AI Platform',
 };
 
